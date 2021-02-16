@@ -8,9 +8,11 @@
     <div class="row course-content">
         @foreach (var course in Model.Courses)
         {
+        <a asp-action="ShowCourse" asp-route-id="@course.CourseId">
             <div class="course-image-container">
                 <div class="course-image" style="background-image: url(@course.ImageUrl)"></div>
             </div>
+        </a>
             <span>@course.CourseName</span>
         }
     </div>

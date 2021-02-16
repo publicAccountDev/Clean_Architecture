@@ -20,5 +20,17 @@ namespace CleanArchitecture.Web.Controllers
             var model = _courseServices.GetCourses();
             return View(model);
         }
+
+        public IActionResult ShowCourse(int id)
+        {
+            var course = _courseServices.GetCourseById(id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
     }
 }

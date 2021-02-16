@@ -15,6 +15,11 @@ namespace CleanArchitecture.Infrastructure.Repositories
             _context = context;
         }
 
+        public Course GetCourseById(int courseId)
+        {
+            return _context.Courses.Find(courseId);
+        }
+
         public IEnumerable<Course> GetCourses()
         {
             return _context.Courses;

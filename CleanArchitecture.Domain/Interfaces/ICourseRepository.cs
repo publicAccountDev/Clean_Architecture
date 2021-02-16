@@ -8,5 +8,6 @@ namespace CleanArchitecture.Domain.Interfaces
     public interface ICourseRepository
     {
         IEnumerable<Course> GetCourses();
+        Course GetCourseById(int courseId);
     }
 }
