@@ -13,10 +13,10 @@ namespace CleanArchitecture.Infrastructure.IoC
     {
         public static void RegisterServices(IServiceCollection services)
         {
-            // Application Layer
+            
             services.AddScoped<ICourseServices, CourseServices>();
 
-            // Infrastrcture Layer 
+           
             services.AddScoped<ICourseRepository, CourseRepository>();
         }
     }
