@@ -8,11 +8,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using CleanArchitecture.Infrastructure.Context;
 
 namespace CleanArchitecture.Web
 {
     public class Startup
     {
+        private string ConnectionString = "Data Source=.;Initial Catalog=CleanArch_DB;Integrated Security=true;";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +27,10 @@ namespace CleanArchitecture.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<DataBaseContext>(options =>
+            {
+                options.UseSqlServer(ConnectionString);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
