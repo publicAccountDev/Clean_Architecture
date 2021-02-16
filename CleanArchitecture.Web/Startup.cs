@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CleanArchitecture.Infrastructure.Context;
+using CleanArchitecture.Infrastructure.IoC;
 
 namespace CleanArchitecture.Web
 {
@@ -31,6 +32,8 @@ namespace CleanArchitecture.Web
             {
                 options.UseSqlServer(ConnectionString);
             });
+
+            RegiterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +62,11 @@ namespace CleanArchitecture.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        public static void RegiterServices(IServiceCollection services)
+        {
+            DependencyContainer.RegisterServices(services);
         }
     }
 }
