@@ -15,8 +15,10 @@ namespace CleanArchitecture.Infrastructure.IoC
         {
             
             services.AddScoped<ICourseServices, CourseServices>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
     }
 }
