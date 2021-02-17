@@ -2,10 +2,13 @@
 using CleanArchitecture.Application.Security;
 using CleanArchitecture.Application.ViewModels;
 using CleanArchitecture.Domain.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CleanArchitecture.Web.Controllers
@@ -82,8 +85,31 @@ namespace CleanArchitecture.Web.Controllers
                 return View(login);
             }
 
-            return View();
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, login.Email),
+                new Claim(ClaimTypes.NameIdentifier, login.Email)
+            };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var principal = new ClaimsPrincipal(identity);
+
+            var properties = new AuthenticationProperties()
+            {
+                IsPersistent = login.ReMemberMe
+            };
+
+            HttpContext.SignInAsync(principal, properties);
+
+            return Redirect("/");
         }
         #endregion
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("/");
+        }
     }
 }
