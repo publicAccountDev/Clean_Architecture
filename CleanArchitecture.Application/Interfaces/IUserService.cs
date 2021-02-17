@@ -7,7 +7,7 @@ namespace CleanArchitecture.Application.Interfaces
 {
     public interface IUserService
     {
-        int AddUser(User user);
+        int RegisterUser(User user);
         bool IsExistEmail(string email);
         bool IsExistUserName(string userName);
     }

@@ -15,7 +15,7 @@ namespace CleanArchitecture.Application.Services
             _userRepository = userRepository;
         }
 
-        public int AddUser(User user)
+        public int RegisterUser(User user)
         {
             _userRepository.AddUser(user);
             _userRepository.Save();
