@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Application.Interfaces;
+using CleanArchitecture.Application.Security;
 using CleanArchitecture.Domain.Interfaces;
 using CleanArchitecture.Domain.Models;
 using System;
@@ -30,6 +31,11 @@ namespace CleanArchitecture.Application.Services
         public bool IsExistUserName(string userName)
         {
             return _userRepository.IsexistUserName(userName);
+        }
+
+        public bool IsExistUser(string email, string password)
+        {
+            return _userRepository.IsExistUser(email.Trim().ToLower(), PasswordHelper.EncodePasswordMd5(password));
         }
     }
 }

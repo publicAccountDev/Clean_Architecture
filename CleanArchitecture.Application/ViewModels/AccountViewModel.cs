@@ -22,4 +22,17 @@ namespace CleanArchitecture.Application.ViewModels
         [Compare("Password")]
         public string RePassword { get; set; }
     }
+
+    public class LoginViewModel
+    {
+        [Required]
+        [MaxLength(200)]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        [MaxLength(200)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+        public bool ReMemberMe { get; set; }
+    }
 }

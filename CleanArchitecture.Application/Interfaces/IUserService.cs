@@ -10,5 +10,6 @@ namespace CleanArchitecture.Application.Interfaces
         int RegisterUser(User user);
         bool IsExistEmail(string email);
         bool IsExistUserName(string userName);
+        bool IsExistUser(string email, string password);
     }
 }

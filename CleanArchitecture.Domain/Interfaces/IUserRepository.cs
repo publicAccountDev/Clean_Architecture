@@ -11,5 +11,6 @@ namespace CleanArchitecture.Domain.Interfaces
         void Save();
         bool IsexistUserName(string userName);
         bool IsExistEmail(string email);
+        bool IsExistUser(string email, string password);
     }
 }

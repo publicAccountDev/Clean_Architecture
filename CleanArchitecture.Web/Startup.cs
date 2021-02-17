@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CleanArchitecture.Infrastructure.Context;
 using CleanArchitecture.Infrastructure.IoC;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CleanArchitecture.Web
 {
@@ -27,6 +28,17 @@ namespace CleanArchitecture.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.LoginPath = "/Login";
+                options.LogoutPath = "/Logout";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(43200);
+            });
             services.AddControllersWithViews();
             services.AddDbContext<DataBaseContext>(options =>
             {

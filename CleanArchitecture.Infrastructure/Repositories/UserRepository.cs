@@ -26,6 +26,11 @@ namespace CleanArchitecture.Infrastructure.Repositories
             return _context.Users.Any(u => u.Email == email);
         }
 
+        public bool IsExistUser(string email, string password)
+        {
+            return _context.Users.Any(u => u.Email == email && u.Password == password);
+        }
+
         public bool IsexistUserName(string userName)
         {
             return _context.Users.Any(u => u.UserName == userName);
